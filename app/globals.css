@@ -72,6 +72,21 @@ body,
     --ring: 212.7 26.8% 83.9%;
   }
 }
+
+.cl-formButtonPrimary {
+  background-color: #704DFF;
+  transition: all 0.2s;
+  font-size: 0.8rem;
+  padding: 1rem 0;
+}
+
+.cl-formButtonPrimary:hover {
+  background-color: #5a31ff;
+}
+
+.cl-internal-16pk7q8 {
+  padding: 0.5rem 0;
+}
  
 @layer base {
   * {

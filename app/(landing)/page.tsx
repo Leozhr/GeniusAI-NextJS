@@ -1,7 +1,16 @@
-const LadingPage = () => {
-  return (
-    <div>LadingPage</div>
-  )
-}
+import { LandingHero } from "@/components/landing-hero";
+import { LandingNavbar } from "@/components/landing-navbar";
 
-export default LadingPage;
+const LandingPage = () => {
+  return ( 
+    <div className="h-full bg-[#111827]">
+      <LandingNavbar />
+
+      <div className="h-[80%] flex items-center justify-center">
+        <LandingHero />
+      </div>
+    </div>
+   );
+}
+ 
+export default LandingPage;
