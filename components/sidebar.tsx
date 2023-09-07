@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import { FreeCounter } from "@/components/free-counter";
 import { cn } from "@/lib/utils";
 import {
   Code,
@@ -49,9 +50,13 @@ const routes = [
     icon: Settings,
     href: "/settings",
   },
-]
+];
 
-const Sidebar = () => {
+interface ISidebarProps {
+  userApiLimit: number;
+}
+
+const Sidebar = ({ userApiLimit = 0 }: ISidebarProps) => {
   const pathname = usePathname();
 
   return (
@@ -93,6 +98,7 @@ const Sidebar = () => {
           ))}
         </div>
       </div>
+      <FreeCounter userApiLimit={userApiLimit} />
     </div>
   )
 }
