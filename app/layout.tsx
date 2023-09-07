@@ -1,4 +1,3 @@
-import { ModalProvider } from '@/providers/modal'
 import { ClerkProvider } from '@clerk/nextjs'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
@@ -20,7 +19,6 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="pt-BR">
         <body className={inter.className}>
-          <ModalProvider />
           {children}
         </body>
       </html>

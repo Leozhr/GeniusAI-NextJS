@@ -10,9 +10,11 @@ import {
   DialogTitle
 } from "@/components/ui/dialog";
 import { useModal } from "@/hooks/use-pro-model";
+import axios from "axios";
 
 import { cn } from "@/lib/utils";
 import { Check, Code, ImageIcon, MessageSquare, Zap } from "lucide-react";
+import { useState } from "react";
 import { Button } from "./ui/button";
 import { Card } from "./ui/card";
 
@@ -39,6 +41,20 @@ const tools = [
 
 export const ProModal = () => {
   const proModal = useModal();
+  const [loading, setLoading] = useState(false);
+
+  const onSubscribe = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.get("/api/stripe");
+
+      window.location.href = response.data.url;
+    } catch (error) {
+      console.error("Something went wrong");
+    } finally {
+      setLoading(false);
+    }
+  }
 
   return (
     <Dialog 
@@ -82,6 +98,8 @@ export const ProModal = () => {
         </DialogHeader>
         <DialogFooter>
           <Button
+            disabled={loading}
+            onClick={onSubscribe}
             size="lg"
             variant="premium"
             className="w-full"

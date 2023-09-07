@@ -9,9 +9,15 @@ import { Progress } from "@/components/ui/progress";
 import { MAX_FREE_COUNTS } from "@/constants";
 import { useModal } from "@/hooks/use-pro-model";
 
+interface FreeCounterProps {
+  userApiLimit: number;
+  isPro: boolean;
+}
+
 export const FreeCounter = ({
-  userApiLimit = 0 
-}: { userApiLimit: number }) => {
+  userApiLimit = 0,
+  isPro = false 
+}: FreeCounterProps) => {
   const [count, setCount] = useState(false);
   const proModal = useModal();
 
@@ -20,6 +26,10 @@ export const FreeCounter = ({
   }, []);
 
   if (!count) {
+    return null;
+  }
+
+  if (isPro) {
     return null;
   }
 
