@@ -15,6 +15,7 @@ import axios from "axios";
 import { cn } from "@/lib/utils";
 import { Check, Code, ImageIcon, MessageSquare, Zap } from "lucide-react";
 import { useState } from "react";
+import { toast } from "react-hot-toast";
 import { Button } from "./ui/button";
 import { Card } from "./ui/card";
 
@@ -50,7 +51,7 @@ export const ProModal = () => {
 
       window.location.href = response.data.url;
     } catch (error) {
-      console.error("Something went wrong");
+      toast.error("Something went wrong");
     } finally {
       setLoading(false);
     }

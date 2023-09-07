@@ -26,6 +26,7 @@ import { Select, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/
 import { useModal } from "@/hooks/use-pro-model";
 import { SelectContent } from "@radix-ui/react-select";
 import Image from "next/image";
+import { toast } from "react-hot-toast";
 
 
 const ImagePage = () => {
@@ -58,6 +59,8 @@ const ImagePage = () => {
     } catch (error: any) {
       if (error?.response?.status === 403) {
         proModal.onOpen();
+      } else {
+        toast.error("Something went wrong");
       }
     } finally {
       router.refresh();

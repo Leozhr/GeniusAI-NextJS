@@ -27,6 +27,7 @@ import { Input } from "@/components/ui/input";
 import { UserAvatar } from "@/components/user-avatar";
 import { useModal } from "@/hooks/use-pro-model";
 import { cn } from "@/lib/utils";
+import { toast } from "react-hot-toast";
 
 
 const CodePage = () => {
@@ -58,6 +59,8 @@ const CodePage = () => {
     } catch (error: any) {
       if (error?.response?.status === 403) {
         proModal.onOpen();
+      } else {
+        toast.error("Something went wrong");
       }
     } finally {
       router.refresh();

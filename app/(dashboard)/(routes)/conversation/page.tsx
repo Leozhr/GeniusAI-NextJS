@@ -10,6 +10,7 @@ import { formSchema } from "./constants";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 import { BotAvatar } from "@/components/bot-avatar";
 import { Empty } from "@/components/empty";
@@ -57,6 +58,8 @@ const ConversationPage = () => {
     } catch (error: any) {
       if (error?.response?.status === 403) {
         proModal.onOpen();
+      } else {
+        toast.error("Something went wrong");
       }
     } finally {
       router.refresh();
