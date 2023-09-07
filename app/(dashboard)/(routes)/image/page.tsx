@@ -23,11 +23,13 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Select, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useModal } from "@/hooks/use-pro-model";
 import { SelectContent } from "@radix-ui/react-select";
 import Image from "next/image";
 
 
 const ImagePage = () => {
+  const proModal = useModal();
   const router = useRouter();
   const [photo, setPhotos] = useState<string[]>([]);
 
@@ -54,7 +56,9 @@ const ImagePage = () => {
 
       setPhotos(urls);
     } catch (error: any) {
-      console.log(error);
+      if (error?.response?.status === 403) {
+        proModal.onOpen();
+      }
     } finally {
       router.refresh();
     }
@@ -84,10 +88,10 @@ const ImagePage = () => {
                 <FormItem className="col-span-12 lg:col-span-6">
                   <FormControl className="p-0 m-0">
                     <Input
-                     className="border-0 outline-none focus-visible:ring-0
-                     focus-visible:ring-transparent"
-                     disabled={isLoading}
-                     placeholder="Ask me anything about your image..."
+                      className="border-0 outline-none focus-visible:ring-0
+                      focus-visible:ring-transparent"
+                      disabled={isLoading}
+                      placeholder="Ask me anything about your image..."
                      {...field}
                     />
                   </FormControl>
@@ -100,10 +104,10 @@ const ImagePage = () => {
               render={({ field }) => (
                 <FormItem className="col-span-12 lg:col-span-2">
                   <Select
-                  disabled={isLoading}
-                  onValueChange={field.onChange}
-                  value={field.value}
-                  defaultValue={field.value}
+                    disabled={isLoading}
+                    onValueChange={field.onChange}
+                    value={field.value}
+                    defaultValue={field.value}
                   >
                     <FormControl>
                       <SelectTrigger>
